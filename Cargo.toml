@@ -1,0 +1,8 @@
+[package]
+name = "algorithm"
+version = "0.1.0"
+authors = ["wowo <zhouyuexie@gmail.com>"]
+
+[dependencies]
+time = "*"
+rand = "*"
