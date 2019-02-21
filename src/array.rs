@@ -1,7 +1,7 @@
 use rand::Rng;
 
 pub fn init() -> Vec<i32> {
-    let n = 10000;
+    let n = 10;
     let mut array = Vec::new();
 
     let mut rng = rand::thread_rng();

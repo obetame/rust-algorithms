@@ -1,14 +1,18 @@
 use time::PreciseTime;
 
+fn swap(val: &mut Vec<i32>, a: usize, b: usize) {
+    val[a] = val[a] ^ val[b];
+    val[b] = val[a] ^ val[b];
+    val[a] = val[a] ^ val[b];
+}
+
 // 冒泡
 fn bubble(val: &Vec<i32>) -> Vec<i32> {
     let mut value = val.clone();
     for i in 0..value.len() {
         for m in 0..value.len() - 1 - i {
             if value[m] > value[m + 1] {
-                let temp = value[m];
-                value[m] = value[m + 1];
-                value[m + 1] = temp;
+                swap(&mut value, m, m + 1);
             }
         }
     }
@@ -22,9 +26,7 @@ fn bubble1(val: &Vec<i32>) -> Vec<i32> {
         let mut flag = 0;
         for m in 0..value.len() - 1 - i {
             if value[m] > value[m + 1] {
-                let temp = value[m];
-                value[m] = value[m + 1];
-                value[m + 1] = temp;
+                swap(&mut value, m, m + 1);
                 flag = 1;
             }
         }
@@ -43,9 +45,7 @@ fn bubble2(val: &Vec<i32>) -> Vec<i32> {
         let mut flag = 0;
         for m in 0..last_change {
             if value[m] > value[m + 1] {
-                let temp = value[m];
-                value[m] = value[m + 1];
-                value[m + 1] = temp;
+                swap(&mut value, m, m + 1);
                 flag = 1;
                 last_change = m + 1;
             }
