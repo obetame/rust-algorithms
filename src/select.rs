@@ -41,29 +41,16 @@ fn select1(val: &Vec<i32>) -> Vec<i32> {
                 max = n;
             }
         }
-        println!("min: {}, max: {}, left: {}, right: {}", min, max, left, right);
-        println!("min value: {}, max value: {}", value[min], value[max]);
-
         if min == right && max == left {
             swap(&mut value, left, right);
         } else {
             if min != left {
-//                if min == right {
-//                    right =
-//                }
                 swap(&mut value, min, left);
             }
             if max != right {
                 swap(&mut value, if max == left { min } else { max }, right);
             }
         }
-//        if value[min] < value[left] && min != left {
-//            swap(&mut value, min, left);
-//        }
-//        if value[max] > value[right] && max != right {
-//            swap(&mut value, max, right);
-//        }
-        println!("{:?}", value);
         left+=1;
         right-=1;
     }
@@ -71,7 +58,7 @@ fn select1(val: &Vec<i32>) -> Vec<i32> {
 }
 
 pub fn test(array_value: &Vec<i32>) {
-    println!("Start test select sort:{:?}", array_value);
+    println!("Start test select sort");
 
     let start_select = PreciseTime::now();
     let a = select(&array_value);
@@ -83,7 +70,7 @@ pub fn test(array_value: &Vec<i32>) {
     let end_select = PreciseTime::now();
     println!("select1 take time {}", start_select.to(end_select));
 
-    println!("{:?}", a);
-    println!("{:?}", b);
+//    println!("{:?}", a);
+//    println!("{:?}", b);
     println!("{}", a == b);
 }
