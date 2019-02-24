@@ -32,4 +32,10 @@ select take time PT4.120143050S
 select1 take time PT3.074074023S
 ```
 
+其中优化1中需要注意三点:
+
+- left == max && right == min
+- left == max
+- right == min
+
 可见选择排序比冒泡快了不少,不过还不够理想.

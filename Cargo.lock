@@ -1,12 +1,4 @@
 [[package]]
-name = "algorithm"
-version = "0.1.0"
-dependencies = [
- "rand 0.6.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "time 0.1.42 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
 name = "autocfg"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -142,6 +134,14 @@ dependencies = [
 name = "redox_syscall"
 version = "0.1.51"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "rust-algorithm"
+version = "0.1.0"
+dependencies = [
+ "rand 0.6.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "time 0.1.42 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "rustc_version"
