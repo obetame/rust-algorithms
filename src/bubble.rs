@@ -1,10 +1,5 @@
 use time::PreciseTime;
-
-fn swap(val: &mut Vec<i32>, a: usize, b: usize) {
-    val[a] = val[a] ^ val[b];
-    val[b] = val[a] ^ val[b];
-    val[a] = val[a] ^ val[b];
-}
+use array::swap;
 
 // 冒泡
 fn bubble(val: &Vec<i32>) -> Vec<i32> {

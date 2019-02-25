@@ -11,3 +11,9 @@ pub fn init() -> Vec<i32> {
 
     array
 }
+
+pub fn swap(val: &mut Vec<i32>, a: usize, b: usize) {
+    val[a] = val[a] ^ val[b];
+    val[b] = val[a] ^ val[b];
+    val[a] = val[a] ^ val[b];
+}

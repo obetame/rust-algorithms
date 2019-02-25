@@ -6,6 +6,7 @@ extern crate rand;
 mod array;
 mod bubble;
 mod select;
+mod insert;
 
 fn main() {
     if let Some(name) = env::args().nth(1) {
@@ -15,6 +16,7 @@ fn main() {
         match name.as_ref() {
             "bubble" => bubble::test(&array_value),
             "select" => select::test(&array_value),
+            "insert" => insert::test(&array_value),
             _ => println!("please input sort name")
         }
     }

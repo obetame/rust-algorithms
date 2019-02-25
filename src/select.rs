@@ -1,10 +1,5 @@
 use time::PreciseTime;
-
-fn swap(val: &mut Vec<i32>, a: usize, b: usize) {
-    val[a] = val[a] ^ val[b];
-    val[b] = val[a] ^ val[b];
-    val[a] = val[a] ^ val[b];
-}
+use array::swap;
 
 // 选择
 fn select(val: &Vec<i32>) -> Vec<i32> {
