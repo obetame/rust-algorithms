@@ -1,52 +1,74 @@
 use time::PreciseTime;
 use array::swap;
 
-fn adjust(val: &mut Vec<i32>, i: usize) {
-    let mut index = i;
-    let mut parent_index = (index - 1) / 2;
-    println!("i: {}, parent_index: {}", i, parent_index);
+fn adjust(val: &mut Vec<i32>, i: usize, len: usize) {
+    let left_index = i * 2 + 1;
+    let right_index = i * 2 + 2;
+    let mut big_index = i;
 
-    while parent_index >= 0 {
+    if left_index < len && val[left_index] > val[big_index] {
+        big_index = left_index;
+    }
+    if right_index < len && val[right_index] > val[big_index] {
+        big_index = right_index;
+    }
+    if big_index != i {
+        swap(val, big_index,  i);
+        adjust(val, big_index, len);
+    }
+}
+
+fn adjust1(val: &mut Vec<i32>, i: usize, len: usize) {
+    let mut parent_index = i;
+
+    while parent_index * 2 <= len {
         let left_index = parent_index * 2 + 1;
         let right_index = parent_index * 2 + 2;
-        println!("left: {}, right: {}, parent: {}", left_index, right_index, parent_index);
+        let mut big_index = parent_index;
 
-        if right_index >= val.len() {
-            // only left child
-            if val[left_index] > val[parent_index] {
-                println!("left: {}, parent: {}", left_index, parent_index);
-                swap(val, left_index, parent_index);
-            }
-        } else {
-            let mut result_index = left_index;
-            if val[left_index] < val[right_index] {
-                result_index = right_index;
-            }
-            if val[result_index] > val[parent_index] {
-                println!("result: {}, parent: {}", result_index, parent_index);
-                swap(val, result_index, parent_index);
-            }
+        if left_index < len && val[left_index] > val[big_index] {
+            big_index = left_index;
         }
-
-        if parent_index == 0 {
+        if right_index < len && val[right_index] > val[big_index] {
+            big_index = right_index;
+        }
+        if big_index != parent_index {
+            swap(val,big_index, parent_index);
+            parent_index = big_index;
+        } else {
             break;
         }
-
-        index = left_index - 2;
-        parent_index = (index - 1) / 2;
     }
 }
 
 // 堆
 fn head(val: &Vec<i32>) -> Vec<i32> {
-    let mut value = vec![5, 6, 5, 9, 8, 9, 6, 5, 1, 7];
+    let mut value = val.clone();
     let len = value.len();
-    println!("{:?}", value);
 
-    for i in (len / 2..len).rev() {
-        adjust(&mut value, i);
+    for i in (0..len / 2).rev() {
+        adjust(&mut value, i, len);
     }
-    println!("{:?}", value);
+
+    for i in (0..len).rev() {
+        swap(&mut value, i, 0);
+        adjust1(&mut value, 0, i);
+    }
+    value
+}
+
+fn head1(val: &Vec<i32>) -> Vec<i32> {
+    let mut value = val.clone();
+    let len = value.len();
+
+    for i in (0..len / 2).rev() {
+        adjust1(&mut value, i, len);
+    }
+
+    for i in (0..len).rev() {
+        swap(&mut value, i, 0);
+        adjust1(&mut value, 0, i);
+    }
     value
 }
 
@@ -54,7 +76,14 @@ pub fn test(array_value: &Vec<i32>) {
     println!("Start test head sort");
 
     let start_head = PreciseTime::now();
-    head(&array_value);
+    let a = head(&array_value);
     let end_head = PreciseTime::now();
     println!("head take time {}", start_head.to(end_head));
+
+    let start_head = PreciseTime::now();
+    let b = head1(&array_value);
+    let end_head = PreciseTime::now();
+    println!("head take time {}", start_head.to(end_head));
+
+    println!("a == b ? {}", a == b);
 }

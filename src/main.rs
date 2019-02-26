@@ -18,7 +18,7 @@ fn main() {
             "bubble" => bubble::test(&array_value),
             "select" => select::test(&array_value),
             "insert" => insert::test(&array_value),
-//            "head" => head::test(&array_value),
+            "head" => head::test(&array_value),
             _ => println!("please input sort name")
         }
     }
