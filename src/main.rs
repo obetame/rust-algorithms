@@ -7,6 +7,7 @@ mod array;
 mod bubble;
 mod select;
 mod insert;
+mod head;
 
 fn main() {
     if let Some(name) = env::args().nth(1) {
@@ -17,6 +18,7 @@ fn main() {
             "bubble" => bubble::test(&array_value),
             "select" => select::test(&array_value),
             "insert" => insert::test(&array_value),
+//            "head" => head::test(&array_value),
             _ => println!("please input sort name")
         }
     }
