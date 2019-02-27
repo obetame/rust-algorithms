@@ -13,6 +13,9 @@ pub fn init() -> Vec<i32> {
 }
 
 pub fn swap(val: &mut Vec<i32>, a: usize, b: usize) {
+    if a == b || val[a] == val[b] {
+        return;
+    }
     val[a] = val[a] ^ val[b];
     val[b] = val[a] ^ val[b];
     val[a] = val[a] ^ val[b];
