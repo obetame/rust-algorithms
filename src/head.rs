@@ -52,7 +52,7 @@ fn head(val: &Vec<i32>) -> Vec<i32> {
 
     for i in (0..len).rev() {
         swap(&mut value, i, 0);
-        adjust1(&mut value, 0, i);
+        adjust(&mut value, 0, i);
     }
     value
 }
